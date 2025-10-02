@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define endl '\n' 
+#define ll long long
+const double eps = 1e-9;
+#define gcd(a,b) __gcd(a,b)
+#define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield)
+#define mem(a,b) memset(a,b,sizeof(a))
+const int mx = 1e7+123;
+    bitset<mx> isPrime;
+    vector<int> primes;
+    int cntPrime[mx];
+    
+    
+    void primeGen ( int n )
+    {
+        for ( int i = 3; i <= n; i += 2 ) isPrime[i] = 1;
+    
+        int sq = sqrt(n);
+        for ( int i = 3; i <= sq; i += 2 ) {
+            if(isPrime[i]) {
+                for ( int j = i*i; j <= n; j += i ) {
+                    isPrime[j] = 0;
+                }
+            }
+        }
+    
+        isPrime[2] = 1;
+        primes.push_back(2);
+    
+        for ( int i = 3; i <= n; i += 2 ) {
+            if(isPrime[i] == 1) {
+                primes.push_back(i);
+            }
+        }
+    }
+int main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    primeGen(1e7+123);
+    int t;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        ll ans=0;
+        for(int i=2;i<=n;i++){
+            if(isPrime[i]){
+
+                ans+=n/i;
+            }
+
+        }
+        cout<<ans<<endl;
+        
+
+    }
+    return 0;
+}
