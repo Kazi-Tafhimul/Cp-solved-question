@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define endl '\n' 
+#define ll long long
+const double eps = 1e-9;
+#define gcd(a,b) __gcd(a,b)
+#define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield)
+#define mem(a,b) memset(a,b,sizeof(a))
+int main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        map<ll,ll>mp;
+        for(int i=1;i<=n;i++){
+            ll k;
+            cin>>k;
+            for(int j=0;j<k;j++){
+                ll x;
+                cin>>x;
+                if(mp[x]!=0){
+                    mp[x]=-1;
+                }
+                else{
+                    mp[x]=i;
+
+                }
+
+            }
+
+
+        }
+        //ll count=0;
+        set<ll>s;
+        for(auto u:mp){
+            if(u.second!=-1){
+                s.insert(u.second);
+            }
+        }
+        if(s.size()>=n){
+            cout<<"NO"<<endl;
+        }
+        else{
+            cout<<"YES"<<endl;
+        }
+    }
+    return 0;
+}
